@@ -1,16 +1,17 @@
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <time.h>
+
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
 #pragma omp declare simd
 float f(float x) { return (4.0 / (1.0 + x * x)); }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   int n, k, i, j, list_length;
   n = 100000000;
   float tmp[4], y;
@@ -22,8 +23,7 @@ int main(int argc, char *argv[]) {
   n_x = 1.0 / ((float(n)));
   t1 = omp_get_wtime();
 
-  for (i = 0; i < 4; i++)
-    tmp[i] = 0;
+  for (i = 0; i < 4; i++) tmp[i] = 0;
   x = 0;
 
 #pragma omp parallel for  num_threads(thread_count) private(x) reduction(+:tmp1)

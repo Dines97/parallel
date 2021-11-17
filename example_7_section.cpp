@@ -1,10 +1,11 @@
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <time.h>
+
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
 double f1(double a2[16000][16000], double b2[16000], double c2[16000], int n) {
@@ -14,8 +15,7 @@ double f1(double a2[16000][16000], double b2[16000], double c2[16000], int n) {
   {
     for (i = 0; i < n2; i++) {
       c2[i] = 0.0;
-      for (j = 0; j < n2; j++)
-        c2[i] += a2[i][j] * b2[j];
+      for (j = 0; j < n2; j++) c2[i] += a2[i][j] * b2[j];
       temp = temp + c2[i];
     }
   }
@@ -31,8 +31,7 @@ double f2(double a[1024][1024], double b[1024][1024], double c[1024][1024],
     for (i = 0; i < n; i++) {
       for (j = 0; j < n; j++) {
         c[i][j] = 0.0;
-        for (k = 0; k < n; k++)
-          c[i][j] += a[i][k] * b[k][j];
+        for (k = 0; k < n; k++) c[i][j] += a[i][k] * b[k][j];
         temp = temp + c[i][j];
       }
     }
@@ -41,7 +40,7 @@ double f2(double a[1024][1024], double b[1024][1024], double c[1024][1024],
   return temp;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double static t1, t2, a[1024][1024], b[1024][1024], c[1024][1024],
       d[1024][1024], a2[16000][16000], b2[16000], c2[16000], temp1, temp2;
   int n, n2, k, i, j, list_length;
@@ -49,8 +48,8 @@ int main(int argc, char *argv[]) {
   int thread_count;
   thread_count = atoi(argv[1]);
   int my_rank = omp_get_thread_num();
-  n = 400;    // n=400;
-  n2 = 15000; // n2=15000;
+  n = 400;     // n=400;
+  n2 = 15000;  // n2=15000;
 
   for (j = 0; j < n; j++) {
     for (i = 0; i < n; i++) {

@@ -1,13 +1,14 @@
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2;
   int n, i;
   double global_result = 0;
@@ -39,16 +40,16 @@ private(x) firstprivate(h) firstprivate(a) for ( i=1;i<=n;i++) //
 }
 */
 
-#pragma omp parallel num_threads(thread_count) private(x) firstprivate(h)      \
-    firstprivate(a) // reduction(+:approx)
+#pragma omp parallel num_threads(thread_count) private(x) firstprivate(h) \
+    firstprivate(a)  // reduction(+:approx)
   {
     double temp;
     temp = 0;
     // #pragma omp  for
-    for (i = 1; i <= n; i++) // (a+i*h)*(a+i*h);
+    for (i = 1; i <= n; i++)  // (a+i*h)*(a+i*h);
     {
       x = a + i * h;
-      temp += (x * x); //(a+i*h)*(a+i*h);
+      temp += (x * x);  //(a+i*h)*(a+i*h);
     }
 #pragma omp critical
     approx += temp;

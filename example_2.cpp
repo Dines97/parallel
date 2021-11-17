@@ -1,12 +1,13 @@
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <time.h>
+
+#include <iostream>
 // PS1='Z:\W\$ '
 
 using namespace std;
 class area {
-public:
+ public:
   double a, b;
   double compute_area(int);
   area(double x, double y) {
@@ -30,7 +31,7 @@ double area::compute_area(int num_step) {
   return approx;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2, a, b;
   int n, j;
   if (argc != 4) {

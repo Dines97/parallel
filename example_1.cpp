@@ -1,5 +1,6 @@
-#include <iostream>
 #include <omp.h>
+
+#include <iostream>
 /*
 #ifdef _OPENMP
 # include <omp.h>
@@ -8,7 +9,7 @@
 // PS1='Z:\W\$ '
 using namespace std;
 void Hello(void);
-int main(int argc, char *argv[]) { /*int i;cout<<argc<<endl;
+int main(int argc, char* argv[]) { /*int i;cout<<argc<<endl;
                                       for (i=0;i<argc;i++) cout<<argv[i]<<endl;
                                       cout<<endl<<endl; */
 

@@ -1,14 +1,15 @@
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <openacc.h>
 #include <stdio.h>
 #include <time.h>
+
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   int n, k, i, j, list_length;
   n = 1000;
   double tmp1, y, x, error;

@@ -1,13 +1,14 @@
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2;
   int n, k, i;
   double global_result = 0;

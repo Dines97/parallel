@@ -1,13 +1,14 @@
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <time.h>
+
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2;
   int n, k, i, j, list_length;
   int tmp;
@@ -17,8 +18,7 @@ int main(int argc, char *argv[]) {
   n = 100000;
   int a[n];
   srand(time(NULL));
-  for (i = 0; i < n; i++)
-    a[i] = (rand() % 90) + 10;
+  for (i = 0; i < n; i++) a[i] = (rand() % 90) + 10;
 
   j = 0;
   i = 0;

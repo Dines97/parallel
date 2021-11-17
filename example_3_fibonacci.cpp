@@ -1,12 +1,13 @@
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2, fib[2000];
   int n, k, i;
 
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]) {
   fib[0] = 1;
   fib[1] = 1;
   t1 = omp_get_wtime();
-#pragma omp parallel for num_threads(thread_count) // schedule(static,1)
+#pragma omp parallel for num_threads(thread_count)  // schedule(static,1)
   for (i = 2; i < n; i++) {
     fib[i] = fib[i - 1] + fib[i - 2];
   }
@@ -33,8 +34,7 @@ int main(int argc, char *argv[]) {
 
   cout << "Time elapsed=" << t2 << endl;
 
-  for (i = 0; i < n; i++)
-    cout << fib[i] << " ";
+  for (i = 0; i < n; i++) cout << fib[i] << " ";
   cout << endl;
   return 0;
 }

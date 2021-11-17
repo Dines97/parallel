@@ -1,13 +1,14 @@
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2;
   int n, k, i;
   double global_result = 0;
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
   for (k = 0; k < n; k++) {
     sum += factor / (2 * k + 1);
     factor = -factor;
-  } //}
+  }  //}
   pi_approx = 4.0 * sum;
 
   t2 = omp_get_wtime() - t1;

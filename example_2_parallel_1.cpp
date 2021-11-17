@@ -1,13 +1,13 @@
-#include <iostream>
 #include <math.h>
+#include <omp.h>
 #include <stdlib.h>
 #include <time.h>
 
-#include <omp.h>
+#include <iostream>
 using namespace std;
 
 double Trap(double a, double b, int n);
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2;
   int n, thread_count;
   double global_result;

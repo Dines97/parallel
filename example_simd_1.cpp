@@ -1,13 +1,14 @@
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <time.h>
+
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double static a[4096][4096], b[4096][4096], c[4096][4096], d[4096][4096],
       x[1024 * 1024], y[1024 * 1024], z[1024 * 1024], tmp, tmp1;
   int n, n2, k, i, j, list_length, n1;
@@ -39,8 +40,7 @@ int main(int argc, char *argv[]) {
     for (j = 0; j < n; j++) {
       tmp = 0;
 #pragma omp simd aligned(a, d, c) reduction(+ : tmp)
-      for (k = 0; k < n; k++)
-        tmp += (a[j][k] * d[j][k]);
+      for (k = 0; k < n; k++) tmp += (a[j][k] * d[j][k]);
       c[i][j] = tmp;
     }
   }

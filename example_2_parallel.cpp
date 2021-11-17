@@ -1,8 +1,9 @@
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdlib.h>
 #include <time.h>
+
+#include <iostream>
 using namespace std;
 
 void Trap(double a, double b, int n, double &global_result_p);

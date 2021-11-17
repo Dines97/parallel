@@ -1,13 +1,14 @@
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <time.h>
+
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double static t1, t2, a1[8000000][8], a2[8000][8000], a3[8][8000000],
       b1[8000000], b2[8000], b3[8], c[8000000];
   int n1, n2, n3, k, i, j, list_length;
@@ -39,12 +40,11 @@ int main(int argc, char *argv[]) {
 
   t1 = omp_get_wtime();
 
-#pragma omp parallel for num_threads(thread_count) default(none) private(      \
+#pragma omp parallel for num_threads(thread_count) default(none) private( \
     i, j, k) shared(a1, b1, c, n1, n3)
   for (i = 0; i < n1; i++) {
     c[i] = 0.0;
-    for (j = 0; j < n3; j++)
-      c[i] += a1[i][j] * b1[j];
+    for (j = 0; j < n3; j++) c[i] += a1[i][j] * b1[j];
   }
 
   t2 = omp_get_wtime() - t1;
@@ -52,12 +52,11 @@ int main(int argc, char *argv[]) {
 
   t1 = omp_get_wtime();
 
-#pragma omp parallel for num_threads(thread_count) default(none) private(      \
+#pragma omp parallel for num_threads(thread_count) default(none) private( \
     i, j, k) shared(a2, b2, c, n2)
   for (i = 0; i < n2; i++) {
     c[i] = 0.0;
-    for (j = 0; j < n2; j++)
-      c[i] += a2[i][j] * b2[j];
+    for (j = 0; j < n2; j++) c[i] += a2[i][j] * b2[j];
   }
 
   t2 = omp_get_wtime() - t1;
@@ -65,12 +64,11 @@ int main(int argc, char *argv[]) {
 
   t1 = omp_get_wtime();
 
-#pragma omp parallel for num_threads(thread_count) default(none) private(      \
+#pragma omp parallel for num_threads(thread_count) default(none) private( \
     i, j, k) shared(a3, b3, c, n1, n3)
   for (i = 0; i < n3; i++) {
     c[i] = 0.0;
-    for (j = 0; j < n1; j++)
-      c[i] += a3[i][j] * b3[j];
+    for (j = 0; j < n1; j++) c[i] += a3[i][j] * b3[j];
   }
 
   t2 = omp_get_wtime() - t1;

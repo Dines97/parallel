@@ -1,13 +1,14 @@
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
 #include <math.h>
 #include <omp.h>
 #include <stdio.h>
 #include <time.h>
+
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
   double t1, t2;
   int n, k, i, j, list_length;
   int tmp, phase;
@@ -17,8 +18,7 @@ int main(int argc, char *argv[]) {
   // n=160;
   int a[n];
 
-  for (i = 0; i < n; i++)
-    a[i] = (rand() % 90) + 10;
+  for (i = 0; i < n; i++) a[i] = (rand() % 90) + 10;
 
   j = 0;
   i = 0;
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
   // #pragma omp parallel for num_threads(thread_count)
   for (phase = 0; phase < n; phase++) {
     if (phase % 2 == 0) {
-#pragma omp parallel for num_threads(thread_count) default(none)               \
+#pragma omp parallel for num_threads(thread_count) default(none) \
     shared(a, n) private(i, tmp)
       for (i = 1; i < n; i += 2) {
         if (a[i - 1] > a[i]) {
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
         }
       }
     } else {
-#pragma omp parallel for num_threads(thread_count) default(none)               \
+#pragma omp parallel for num_threads(thread_count) default(none) \
     shared(a, n) private(i, tmp)
       for (i = 1; i < n - 1; i += 2) {
         if (a[i] > a[i + 1]) {
