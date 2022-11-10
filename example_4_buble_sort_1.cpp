@@ -15,10 +15,10 @@ int main(int argc, char* argv[]) {
   int thread_count;
   thread_count = atoi(argv[1]);
   n = 160;
-  n = 100000;
+  n = 10;
   int a[n];
   srand(time(NULL));
-  for (i = 0; i < n; i++) a[i] = (rand() % 90) + 10;
+  for (i = 0; i < n; i++) a[i] = (rand() % 9000) + 10;
 
   j = 0;
   i = 0;
@@ -32,9 +32,8 @@ int main(int argc, char* argv[]) {
  cout<<endl;*/
 
   t1 = omp_get_wtime();
-  // #pragma omp parallel for num_threads(thread_count) private(tmp)
+#pragma omp parallel for num_threads(2048) private(tmp)
   for (list_length = n; list_length >= 2; list_length--) {
-    //#pragma omp parallel for num_threads(thread_count) private(tmp)
     for (i = 0; i < list_length - 1; i++) {
       if (a[i] > a[i + 1]) {
         tmp = a[i];
@@ -49,13 +48,16 @@ int main(int argc, char* argv[]) {
 
   j = 0;
   i = 0;
-  /*   while (i<n)
- {j++;
-     cout<<a[i]<<" ";
-     if (j==20) {cout<<endl;j=0;}
-     i++;
- }
- cout<<endl;*/
+  while (i < n) {
+    j++;
+    cout << a[i] << " ";
+    if (j == 20) {
+      cout << endl;
+      j = 0;
+    }
+    i++;
+  }
+  cout << endl;
 
   return 0;
 }

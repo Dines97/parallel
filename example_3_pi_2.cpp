@@ -24,9 +24,9 @@ int main(int argc, char* argv[]) {
   //{
   // double factor=1.0;
 #pragma omp parallel for num_threads(thread_count)  private(k) reduction(+:sum) firstprivate(factor) schedule(static,1)
-  for (k = 0; k < n; k++) {
-    sum += factor / (2 * k + 1);
-    factor = -factor;
+  for (k = 0; k < n; k += 2) {
+    sum += factor / (2 * k + 1) - (factor / (2 * (k + 1) + 1));
+
   }  //}
   pi_approx = 4.0 * sum;
 

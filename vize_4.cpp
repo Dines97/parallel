@@ -11,6 +11,9 @@ int main(int argc, char *argv[]) {
 
   int i, j, k, tmp = 0;
 
+  await load_images()
+  await load_textures()
+
 #pragma omp parallel for num_threads(5) default(none) private(i, j, k) \
     shared(n, a, b, c) reduction(+ : tmp) collapse(2)
   for (i = 0; i < n; i++) {

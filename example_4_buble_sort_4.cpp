@@ -32,10 +32,9 @@ int main(int argc, char* argv[]) {
 
   t1 = omp_get_wtime();
 
-#pragma omp parallel num_threads(thread_count) \
-    shared(a, n) private(i, tmp, phase)
+#pragma omp parallel num_threads(thread_count) shared(a, n) private(i, tmp, phase)
   for (phase = 0; phase < n; phase++) {
-    if (phase % 2 == 0) {  // cout<<"çift phase="<<phase<<endl;
+    if (phase % 2 == 0) {
 #pragma omp for
       for (i = 1; i < n; i += 2) {
         if (a[i - 1] > a[i]) {
@@ -46,7 +45,7 @@ int main(int argc, char* argv[]) {
       }
     }
 
-    else {  // cout<<" tek phase="<<phase<<endl;
+    else {
 #pragma omp for
       for (i = 1; i < n - 1; i += 2) {
         if (a[i] > a[i + 1]) {
